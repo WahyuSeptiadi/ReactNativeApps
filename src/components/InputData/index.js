@@ -1,7 +1,15 @@
 import React from 'react';
 import {StyleSheet, Text, TextInput} from 'react-native';
 
-const InputData = ({label, placeholder, keyboardType, isTextArea}) => {
+const InputData = ({
+  label,
+  placeholder,
+  keyboardType,
+  isTextArea,
+  onChangeText,
+  nameState,
+  value,
+}) => {
   if (isTextArea) {
     return (
       //   ! Kalau ada 2 komponen, harus di-return dengan cara dibungkus dengan komponen kosong <></> supaya tidak ERROR
@@ -13,6 +21,8 @@ const InputData = ({label, placeholder, keyboardType, isTextArea}) => {
           style={styles.titleInputArea}
           placeholder={placeholder}
           keyboardType={keyboardType}
+          value={value}
+          onChangeText={(text) => onChangeText(nameState, text)}
         />
       </>
     );
@@ -25,6 +35,8 @@ const InputData = ({label, placeholder, keyboardType, isTextArea}) => {
         style={styles.titleInput}
         placeholder={placeholder}
         keyboardType={keyboardType}
+        value={value}
+        onChangeText={(text) => onChangeText(nameState, text)}
       />
     </>
   );
