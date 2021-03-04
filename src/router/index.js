@@ -1,6 +1,6 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import {HomePage, AddNote} from '../pages';
+import {NoteList, AddNote} from '../pages';
 
 const Stack = createStackNavigator();
 
@@ -8,8 +8,8 @@ const Router = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen
-        name="Home Page"
-        component={HomePage}
+        name="Note List"
+        component={NoteList}
         options={{headerShown: true}}
       />
       <Stack.Screen

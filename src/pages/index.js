@@ -1,4 +1,4 @@
-import HomePage from './home';
+import NoteList from './NoteList';
 import AddNote from './AddNote';
 
-export {HomePage, AddNote};
+export {NoteList, AddNote};

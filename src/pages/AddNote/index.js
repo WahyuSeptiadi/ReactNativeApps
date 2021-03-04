@@ -1,12 +1,5 @@
 import React, {Component} from 'react';
-import {
-  StyleSheet,
-  View,
-  TouchableOpacity,
-  Text,
-  Alert,
-  LogBox,
-} from 'react-native';
+import {StyleSheet, View, TouchableOpacity, Text, Alert} from 'react-native';
 import {InputData} from '../../components';
 import FIREBASE from '../../config/Firebase';
 
@@ -41,8 +34,7 @@ export default class AddNote extends Component {
         .push(notes)
         .then((data) => {
           Alert.alert('Success', 'Data saved successfully');
-          this.props.navigation.replace('Home Page');
-          LogBox.ignoreLogs(596776);
+          this.props.navigation.replace('Note List');
         })
         .catch((error) => {
           console.log('Error :', error);
