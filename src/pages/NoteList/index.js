@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, TouchableOpacity} from 'react-native';
+import {StyleSheet, View, TouchableOpacity, Text} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faPlus} from '@fortawesome/free-solid-svg-icons';
 import FIREBASE from '../../config/Firebase';
+import CardNote from '../../components/CardNote';
 
 export default class HomeScreen extends Component {
   constructor(props) {
@@ -30,11 +31,17 @@ export default class HomeScreen extends Component {
   }
 
   render() {
-    console.log('Notes :', this.state.notes);
-    console.log('Notes Key :', this.state.notesKey);
+    const {notes, notesKey} = this.state;
 
     return (
       <View style={styles.pages}>
+        <View style={styles.noteList}>
+          {notesKey.length > 0 ? (
+            notesKey.map((key) => <CardNote key={key} noteItem={notes[key]} />)
+          ) : (
+            <Text>Note is empty </Text>
+          )}
+        </View>
         <View style={styles.wrapperButton}>
           <TouchableOpacity
             style={styles.btnPlus}
@@ -50,6 +57,7 @@ export default class HomeScreen extends Component {
 const styles = StyleSheet.create({
   pages: {
     flex: 1,
+    padding: 30,
   },
   wrapperButton: {
     flex: 1,
