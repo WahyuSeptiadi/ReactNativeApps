@@ -1,4 +1,4 @@
-import Firebase from 'Firebase';
+import Firebase from 'firebase';
 
 Firebase.initializeApp({
   apiKey: 'AIzaSyA9NTepNTXqSUuvwYYZ0ClbG6X_vj-7tKQ',
@@ -9,6 +9,6 @@ Firebase.initializeApp({
   appId: '1:531135604774:web:72a9051fbee14c1f825ee7',
 });
 
-const firebase = Firebase;
+const FIREBASE = Firebase;
 
-export default firebase;
+export default FIREBASE;

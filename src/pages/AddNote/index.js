@@ -1,6 +1,14 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, TouchableOpacity, Text} from 'react-native';
+import {
+  StyleSheet,
+  View,
+  TouchableOpacity,
+  Text,
+  Alert,
+  LogBox,
+} from 'react-native';
 import {InputData} from '../../components';
+import FIREBASE from '../../config/Firebase';
 
 export default class AddNote extends Component {
   constructor(props) {
@@ -20,8 +28,28 @@ export default class AddNote extends Component {
   };
 
   onSubmit = () => {
-    console.log('Enter Submit');
-    console.log(this.state);
+    if (this.state.title && this.state.date && this.state.note) {
+      const referenceFirebase = FIREBASE.database().ref('Notes');
+
+      const notes = {
+        title: this.state.title,
+        date: this.state.date,
+        note: this.state.note,
+      };
+
+      referenceFirebase
+        .push(notes)
+        .then((data) => {
+          Alert.alert('Success', 'Data saved successfully');
+          this.props.navigation.replace('Home Page');
+          LogBox.ignoreLogs(596776);
+        })
+        .catch((error) => {
+          console.log('Error :', error);
+        });
+    } else {
+      Alert.alert('Error', "Form can't be empty!");
+    }
   };
 
   render() {
