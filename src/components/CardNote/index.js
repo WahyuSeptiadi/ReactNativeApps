@@ -3,7 +3,7 @@ import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import React from 'react';
 import {StyleSheet, Text, View, TouchableOpacity} from 'react-native';
 
-const CardNote = ({key, noteItem}) => {
+const CardNote = ({id, noteItem}) => {
   return (
     <TouchableOpacity style={styles.container}>
       <View>

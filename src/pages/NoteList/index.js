@@ -37,7 +37,11 @@ export default class HomeScreen extends Component {
       <View style={styles.pages}>
         <View style={styles.noteList}>
           {notesKey.length > 0 ? (
-            notesKey.map((key) => <CardNote key={key} noteItem={notes[key]} />)
+            // ! key={key} ini bukan import dan harus ada, karena digunakan untuk mapping
+            // ! sedangkan id={key} dijadikan set ke CardNote
+            notesKey.map((key) => (
+              <CardNote id={key} noteItem={notes[key]} key={key} />
+            ))
           ) : (
             <Text>Note is empty </Text>
           )}
