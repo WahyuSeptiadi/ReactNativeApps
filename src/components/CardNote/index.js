@@ -13,7 +13,12 @@ const CardNote = ({id, noteItem, navigation, removeData}) => {
         <Text style={styles.date}>{noteItem.date}</Text>
       </View>
       <View style={styles.icon}>
-        <FontAwesomeIcon icon={faEdit} color={'orange'} size={25} />
+        <FontAwesomeIcon
+          icon={faEdit}
+          color={'orange'}
+          size={25}
+          onPress={() => navigation.navigate('Edit Note', {id: id})}
+        />
         <FontAwesomeIcon
           icon={faTimes}
           color={'red'}

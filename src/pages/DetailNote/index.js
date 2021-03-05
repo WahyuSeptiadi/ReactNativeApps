@@ -45,7 +45,7 @@ const styles = StyleSheet.create({
     padding: 30,
   },
   detailTitle: {
-    fontSize: 20,
+    fontSize: 16,
     fontWeight: 'bold',
     backgroundColor: 'white',
     borderTopLeftRadius: 5,
@@ -68,7 +68,7 @@ const styles = StyleSheet.create({
     borderBottomLeftRadius: 5,
     borderBottomRightRadius: 5,
     paddingBottom: 5,
-    paddingStart: 6,
+    paddingStart: 5,
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
     elevation: 5,
   },
   detailNote: {
-    fontSize: 16,
+    fontSize: 15,
     backgroundColor: 'white',
     paddingStart: 5,
     paddingTop: 5,

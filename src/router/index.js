@@ -1,6 +1,6 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
-import {NoteList, AddNote, DetailNote} from '../pages';
+import {NoteList, AddNote, DetailNote, EditNote} from '../pages';
 
 const Stack = createStackNavigator();
 
@@ -20,6 +20,11 @@ const Router = () => {
       <Stack.Screen
         name="Detail Note"
         component={DetailNote}
+        options={{headerShown: true}}
+      />
+      <Stack.Screen
+        name="Edit Note"
+        component={EditNote}
         options={{headerShown: true}}
       />
     </Stack.Navigator>
