@@ -40,7 +40,12 @@ export default class HomeScreen extends Component {
             // ! key={key} ini bukan import dan harus ada, karena digunakan untuk mapping
             // ! sedangkan id={key} dijadikan set ke CardNote
             notesKey.map((key) => (
-              <CardNote id={key} noteItem={notes[key]} key={key} />
+              <CardNote
+                id={key}
+                noteItem={notes[key]}
+                key={key}
+                {...this.props}
+              />
             ))
           ) : (
             <Text>Note is empty </Text>
