@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {StyleSheet, View, TouchableOpacity, Text} from 'react-native';
+import {StyleSheet, View, TouchableOpacity, Text, Alert} from 'react-native';
 import {FontAwesomeIcon} from '@fortawesome/react-native-fontawesome';
 import {faPlus} from '@fortawesome/free-solid-svg-icons';
 import FIREBASE from '../../config/Firebase';
@@ -16,6 +16,10 @@ export default class HomeScreen extends Component {
   }
 
   componentDidMount() {
+    this.getData();
+  }
+
+  getData = () => {
     FIREBASE.database()
       .ref('Notes')
       .once('value', (querySnapshot) => {
@@ -28,14 +32,42 @@ export default class HomeScreen extends Component {
           notesKey: Object.keys(noteItem),
         });
       });
-  }
+  };
+
+  removeData = (id) => {
+    Alert.alert(
+      'Info',
+      'Are you sure want to delete the note?',
+      [
+        {
+          text: 'Cancel',
+          onPress: () => console.log('Cancel Pressed'),
+          style: 'cancel',
+        },
+        {
+          text: 'OK',
+          onPress: () => {
+            console.log('OK Pressed');
+            FIREBASE.database()
+              .ref('Notes/' + id)
+              .remove();
+            Alert.alert('Deleted', 'Data has been deleted successfully');
+
+            // * REFRESH DATA
+            this.getData();
+          },
+        },
+      ],
+      {cancelable: false},
+    );
+  };
 
   render() {
     const {notes, notesKey} = this.state;
 
     return (
       <View style={styles.pages}>
-        <View style={styles.noteList}>
+        <View>
           {notesKey.length > 0 ? (
             // ! key={key} ini bukan import dan harus ada, karena digunakan untuk mapping
             // ! sedangkan id={key} dijadikan set ke CardNote
@@ -45,10 +77,11 @@ export default class HomeScreen extends Component {
                 noteItem={notes[key]}
                 key={key}
                 {...this.props}
+                removeData={this.removeData}
               />
             ))
           ) : (
-            <Text>Note is empty </Text>
+            <Text style={styles.textEmpty}>Note is empty :(</Text>
           )}
         </View>
         <View style={styles.wrapperButton}>
@@ -87,5 +120,9 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 3.84,
     elevation: 5,
+  },
+  textEmpty: {
+    fontSize: 16,
+    color: 'pink',
   },
 });

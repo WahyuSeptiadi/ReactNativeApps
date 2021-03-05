@@ -33,7 +33,7 @@ export default class AddNote extends Component {
       referenceFirebase
         .push(notes)
         .then((data) => {
-          Alert.alert('Success', 'Data saved successfully');
+          Alert.alert('Saved', 'Data has been saved successfully');
           this.props.navigation.replace('Note List');
         })
         .catch((error) => {
